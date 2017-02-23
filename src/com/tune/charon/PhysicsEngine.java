@@ -1,7 +1,6 @@
 package com.tune.charon;
 
 import javafx.scene.Node;
-import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +22,8 @@ public class PhysicsEngine
     {
         for (int i = 0; i < objectList.size(); i++)
         {
-            objectList.get(i).setTranslateX(Math.random()*STEP_SIZE);
-            objectList.get(i).setTranslateY(Math.random()*STEP_SIZE);
+            objectList.get(i).setTranslateX(Math.random() * STEP_SIZE);
+            objectList.get(i).setTranslateY(Math.random() * STEP_SIZE);
         }
     }
 

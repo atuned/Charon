@@ -1,6 +1,5 @@
 package com.tune.charon;
 
-
 import javafx.geometry.Point2D;
 
 /**
