@@ -11,28 +11,31 @@ import java.util.List;
 public class PhysicsEngine
 {
     private final double STEP_SIZE;
-    private List<Node> objectList = new ArrayList<Node>();
+    private final NumericMethod numericMethod;
+    private Vector2D gravity;
+    private List<Movable> objectList = new ArrayList<Movable>();
 
-    public PhysicsEngine(double stepSize)
+    public PhysicsEngine(NumericMethod numericMethod, double stepSize, double gravity)
     {
+        this.numericMethod = numericMethod;
         this.STEP_SIZE = stepSize;
+        this.gravity = new Vector2D(0, - gravity);
     }
 
     public void stepForward()
     {
         for (int i = 0; i < objectList.size(); i++)
         {
-            objectList.get(i).setTranslateX(Math.random() * STEP_SIZE);
-            objectList.get(i).setTranslateY(Math.random() * STEP_SIZE);
+            objectList.get(i).applyForce(gravity, STEP_SIZE);
         }
     }
 
-    public void addObjects(Node object)
+    public void addObjects(Movable object)
     {
         objectList.add(object);
     }
 
-    public void addObjects(List<Node> objects)
+    public void addObjects(List<Movable> objects)
     {
         objectList.addAll(objects);
     }
