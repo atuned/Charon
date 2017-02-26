@@ -1,6 +1,5 @@
 package com.tune.charon;
 
-import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -8,7 +7,7 @@ import javafx.scene.shape.Circle;
 /**
  * Created by Tune on 2017-02-19.
  */
-public class Ball extends PhysicalObject implements Movable, Rendable
+public class Ball extends PhysicalObject implements Movable, Collidable, Rendable
 {
     private double radius;
     private Color color;
@@ -43,11 +42,11 @@ public class Ball extends PhysicalObject implements Movable, Rendable
     {
         Vector2D positionDelta = Vector2D.scale(getVelocity(), timeStep);
         setPosition(Vector2D.add(positionDelta, getPosition()));
-        setMoveAnimation(getPosition());
+        setRenditionPosition(getPosition());
 
     }
 
-    private void setMoveAnimation(Vector2D position)
+    private void setRenditionPosition(Vector2D position)
     {
         getRendition().relocate(position.getX(), position.getY());
     }
@@ -56,5 +55,24 @@ public class Ball extends PhysicalObject implements Movable, Rendable
     public Node getRendition()
     {
         return rendition;
+    }
+
+    @Override
+    public boolean isInside(Vector2D position)
+    {
+        if (getPosition().distance(position) < safeDistance())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    @Override
+    public double safeDistance()
+    {
+        return radius;
     }
 }
