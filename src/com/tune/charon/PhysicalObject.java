@@ -25,7 +25,7 @@ public abstract class PhysicalObject
         return velocity;
     }
 
-    public void setVelocity(Vector2D velocity)
+    protected void setVelocity(Vector2D velocity)
     {
         this.velocity = velocity;
     }
@@ -35,7 +35,7 @@ public abstract class PhysicalObject
         return position;
     }
 
-    public void setPosition(Vector2D position)
+    protected void setPosition(Vector2D position)
     {
         this.position = position;
     }
