@@ -9,10 +9,10 @@ public abstract class PhysicalObject
 {
     private final double mass;
     private Vector2D velocity;
-    private Point2D position;
+    private Vector2D position;
     private double restitution;
 
-    public PhysicalObject(double mass, double restitution, Vector2D velocity, Point2D position)
+    public PhysicalObject(double mass, double restitution, Vector2D velocity, Vector2D position)
     {
         this.mass = mass;
         this.velocity = velocity;
@@ -30,12 +30,12 @@ public abstract class PhysicalObject
         this.velocity = velocity;
     }
 
-    public Point2D getPosition()
+    public Vector2D getPosition()
     {
         return position;
     }
 
-    public void setPosition(Point2D position)
+    public void setPosition(Vector2D position)
     {
         this.position = position;
     }

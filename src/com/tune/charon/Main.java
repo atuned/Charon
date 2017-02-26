@@ -1,6 +1,7 @@
 package com.tune.charon;
 
 import javafx.application.Application;
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -17,8 +18,8 @@ import java.util.List;
  */
 public class Main extends Application
 {
-    private final int NUM = 4;
-    private final List<Node> objects = new ArrayList<Node>();
+    private final int NUM = 10;
+    private final List<PhysicalObject> objects = new ArrayList<PhysicalObject>();
 
     public static void main(String[] args)
     {
@@ -33,16 +34,33 @@ public class Main extends Application
         for (int i = 0; i < NUM; i++)
         {
             double radius = 10;
-            objects.add(new Circle(radius + Math.random() * (sceneWidth - radius),
-                                   radius + Math.random() * (sceneHeight - radius), radius, Color.WHITE));
+            Vector2D velocity = new Vector2D(Math.random() * 10, Math.random() * 10);
+            Vector2D position = new Vector2D(Math.random() * 0.90 * sceneWidth + radius,
+                                            Math.random() * 0.90 * sceneHeight + radius);
+            Ball ball = new Ball(10, 1, radius, velocity, position);
+            objects.add(ball);
         }
 
-        PhysicsEngine physicsEngine = new PhysicsEngine(10);
-        physicsEngine.addObjects(objects);
-
+        PhysicsEngine physicsEngine = new PhysicsEngine(NumericMethod.EULER_FORWARD, 0.1, -9.82);
         Renderer renderer = new Renderer(physicsEngine);
 
-        final Scene scene = new Scene(new Group(objects), sceneWidth, sceneHeight, Color.BLACK);
+        List<Node> rendable = new ArrayList<Node>();
+        for (PhysicalObject object : objects)
+        {
+            if (object instanceof Movable)
+            {
+                physicsEngine.addObjects((Movable) object);
+            }
+
+            if (object instanceof Rendable)
+            {
+                rendable.add(((Rendable) object).getRendition());
+            }
+        }
+
+        final Scene scene = new Scene(new Group(rendable), sceneWidth, sceneHeight, Color.BLACK);
+
+
         primaryStage.setScene(scene);
         primaryStage.show();
 

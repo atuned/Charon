@@ -5,5 +5,6 @@ package com.tune.charon;
  */
 public interface Movable
 {
-    void applyForce(Vector2D force, double time);
+    void applyForce(Vector2D force, double timeStep);
+    void updatePosition(double timeStep);
 }

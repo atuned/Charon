@@ -27,6 +27,7 @@ public class PhysicsEngine
         for (int i = 0; i < objectList.size(); i++)
         {
             objectList.get(i).applyForce(gravity, STEP_SIZE);
+            objectList.get(i).updatePosition(STEP_SIZE);
         }
     }
 

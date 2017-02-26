@@ -26,8 +26,4 @@ public class Vector2D extends Point2D
     {
         return new Vector2D(vector1.add(vector2));
     }
-
-
-
-
 }
