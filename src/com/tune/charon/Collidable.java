@@ -6,5 +6,5 @@ package com.tune.charon;
 public interface Collidable
 {
     boolean isInside(Vector2D position);
-    double safeDistance();
+    boolean safeDistance(Vector2D position);
 }

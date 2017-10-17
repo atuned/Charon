@@ -60,7 +60,7 @@ public class Ball extends PhysicalObject implements Movable, Collidable, Rendabl
     @Override
     public boolean isInside(Vector2D position)
     {
-        if (getPosition().distance(position) < safeDistance())
+        if (false)
         {
             return true;
         }
@@ -71,8 +71,8 @@ public class Ball extends PhysicalObject implements Movable, Collidable, Rendabl
     }
 
     @Override
-    public double safeDistance()
+    public boolean safeDistance(Vector2D position)
     {
-        return radius;
+        return false;
     }
 }
