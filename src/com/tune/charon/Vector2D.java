@@ -5,16 +5,21 @@ import javafx.geometry.Point2D;
 /**
  * Created by Tune on 2017-02-19.
  */
-public class Vector2D extends Point2D
+public class Vector2D
 {
+    private double x;
+    private double y;
+
     public Vector2D(double x, double y)
     {
-        super(x,y);
+        this.x = x;
+        this.y = y;
     }
 
-    public Vector2D(Point2D point2D)
+    public Vector2D()
     {
-        super(point2D.getX(), point2D.getY());
+        x = 0;
+        y = 0;
     }
 
     public static Vector2D scale(Vector2D vector, double constant)
@@ -24,6 +29,22 @@ public class Vector2D extends Point2D
 
     public static Vector2D add(Vector2D vector1, Vector2D vector2)
     {
-        return new Vector2D(vector1.add(vector2));
+        return new Vector2D(vector1.getX() + vector2.getX(), vector1.getY() + vector2.getY());
+    }
+
+    public void add(Vector2D vectorToAdd)
+    {
+        this.x = x + vectorToAdd.getX();
+        this.y = y + vectorToAdd.getY();
+    }
+
+    public double getX()
+    {
+        return x;
+    }
+
+    public double getY()
+    {
+        return y;
     }
 }

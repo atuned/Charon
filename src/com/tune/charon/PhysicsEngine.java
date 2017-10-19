@@ -13,7 +13,7 @@ public class PhysicsEngine
     private final double STEP_SIZE;
     private final NumericMethod numericMethod;
     private Vector2D gravity;
-    private List<Movable> objectList = new ArrayList<Movable>();
+    private List<Movable> objectList = new ArrayList<>();
 
     public PhysicsEngine(NumericMethod numericMethod, double stepSize, double gravity)
     {
@@ -30,6 +30,8 @@ public class PhysicsEngine
             objectList.get(i).updatePosition(STEP_SIZE);
         }
     }
+
+
 
     public void addObjects(Movable object)
     {
