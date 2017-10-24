@@ -1,23 +1,22 @@
 package com.tune.charon;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tune on 2017-02-18.
  */
 public class Main extends Application
 {
-    private final int NUM = 2;
-    private final Circle[] nodes = new Circle[NUM];
-    private final double RADIUS = 10;
-    private final int sceneWidth = 1000;
-    private final int sceneHeight = 800;
-
     public static void main(String[] args)
     {
         launch(args);
@@ -26,14 +25,11 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        for (int i = 0; i < NUM; i++)
-        {
-            nodes[i] = new Circle(RADIUS + Math.random() * (sceneWidth - RADIUS),
-                                  RADIUS + Math.random() * (sceneHeight - RADIUS), RADIUS, Color.BLUE);
-        }
-        final Scene scene = new Scene(new Group(nodes), sceneWidth, sceneHeight, Color.BLACK);
-        primaryStage.setScene(scene);
+        Controller controller = new Controller(200, 1000, 1800, NumericMethod.EULER_FORWARD, 0.1, 9.82);
+
+        primaryStage.setScene(controller.getScene());
         primaryStage.show();
+        controller.start();
     }
 }
 
