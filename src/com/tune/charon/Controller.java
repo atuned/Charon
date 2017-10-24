@@ -13,7 +13,6 @@ import java.util.List;
 public class Controller
 {
     private final Scene scene;
-    private final Renderer renderer;
     private final PhysicsEngine physicsEngine;
     private final int SCENE_HEIGHT;
     private final int SCENE_WIDTH;
@@ -29,8 +28,7 @@ public class Controller
 
         List<PhysicalObject> objectList = createObjects();
 
-        physicsEngine = new PhysicsEngine(NumericMethod.EULER_FORWARD, stepSize, gravity);
-        renderer = new Renderer(physicsEngine);
+        physicsEngine = new PhysicsEngine(NumericMethod.EULER_FORWARD, stepSize, gravity, this);
 
         List<Node> rendable = new ArrayList<Node>();
         for (PhysicalObject object : objectList)
@@ -52,7 +50,7 @@ public class Controller
 
     public void start()
     {
-        renderer.start();
+        physicsEngine.start();
     }
 
     private List<PhysicalObject> createObjects()
@@ -62,12 +60,13 @@ public class Controller
         for (int i = 0; i < NUM_BALLS; i++)
         {
             double radius = 10;
-            Vector2D velocity = new Vector2D(Math.random() * 10, Math.random() * 10);
+            Vector2D velocity = new Vector2D(Math.random() * 1, Math.random() * 1);
             Vector2D position = new Vector2D(Math.random() * 0.90 * SCENE_WIDTH + radius,
                     Math.random() * 0.90 * SCENE_HEIGHT + radius);
             Ball ball = new Ball(10, 1, radius, velocity, position);
             objects.add(ball);
         }
+        objects.add(new StraightBorder(1, new Vector2D(100, 300), new Angle(0.04)));
         return objects;
     }
 

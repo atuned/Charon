@@ -29,6 +29,11 @@ public class Angle
         return radians;
     }
 
+    public double getDegrees()
+    {
+        return (radians / 2 * Math.PI) * 360;
+    }
+
     public void setRadians(double radians)
     {
         this.radians = limitRadians(radians);

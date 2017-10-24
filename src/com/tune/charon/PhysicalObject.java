@@ -7,9 +7,9 @@ import javafx.geometry.Point2D;
  */
 public abstract class PhysicalObject
 {
+    protected Vector2D position;
+    protected Vector2D velocity;
     private final double mass;
-    private Vector2D velocity;
-    private Vector2D position;
     private double restitution;
 
     public PhysicalObject(double mass, double restitution, Vector2D velocity, Vector2D position)
@@ -25,19 +25,9 @@ public abstract class PhysicalObject
         return velocity;
     }
 
-    protected void setVelocity(Vector2D velocity)
-    {
-        this.velocity = velocity;
-    }
-
     public Vector2D getPosition()
     {
         return position;
-    }
-
-    protected void setPosition(Vector2D position)
-    {
-        this.position = position;
     }
 
     public double getMass()

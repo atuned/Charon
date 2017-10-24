@@ -29,26 +29,38 @@ public class Ball extends PhysicalObject implements Movable, Collidable, Rendabl
         rendition = new Circle(position.getX(), position.getY(), radius, color);
     }
 
-    @Override
-    public void applyForce(Vector2D force, double timeStep)
-    {
-        Vector2D acceleration = Vector2D.scale(force, 1 / getMass());
-        Vector2D velocityDelta = Vector2D.scale(acceleration, timeStep);
-        setVelocity(Vector2D.add(velocityDelta, getVelocity()));
-    }
-
-    @Override
-    public void updatePosition(double timeStep)
-    {
-        Vector2D positionDelta = Vector2D.scale(getVelocity(), timeStep);
-        setPosition(Vector2D.add(positionDelta, getPosition()));
-        setRenditionPosition(getPosition());
-
-    }
-
     private void setRenditionPosition(Vector2D position)
     {
         getRendition().relocate(position.getX(), position.getY());
+    }
+
+    @Override
+    public Vector2D calculateNewVelocity(Vector2D force, double timeStep)
+    {
+        Vector2D acceleration = Vector2D.scale(force, 1 / getMass());
+        Vector2D newVelocity = Vector2D.add(getVelocity(), Vector2D.scale(acceleration, timeStep));
+        return newVelocity;
+    }
+
+    @Override
+    public Vector2D calculateNewPosition(Vector2D newVelocity, double timeStep)
+    {
+        Vector2D positionDelta = Vector2D.scale(newVelocity, timeStep);
+        Vector2D newPosition = Vector2D.add(positionDelta, getPosition());
+        return newPosition;
+    }
+
+    @Override
+    public void setVelocity(Vector2D newVelocity)
+    {
+        velocity = newVelocity;
+    }
+
+    @Override
+    public void setPosition(Vector2D newPosition)
+    {
+        position = newPosition;
+        rendition.relocate(position.getX(), position.getY());
     }
 
     @Override
