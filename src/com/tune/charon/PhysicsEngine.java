@@ -37,7 +37,6 @@ public class PhysicsEngine extends AnimationTimer
         List<Vector2D> Forces = new ArrayList<>();
         List<Vector2D> NewVelocities = new ArrayList<>();
         List<Vector2D> NewPositions = new ArrayList<>();
-        //TODO: For multi-thread support change to list of specified length
         for (Movable object : objectList)
         {
             //Determine all forces
@@ -75,7 +74,7 @@ public class PhysicsEngine extends AnimationTimer
     private Vector2D calculateMouseForce(Movable object, Vector2D mousePosition)
     {
         Vector2D vector = Vector2D.subtract(object.getPosition(), mousePosition);
-        vector.scale(1000 / (vector.length() * vector.length()));
+        vector.scale(-1000 / (vector.length() * vector.length()));
         return vector;
     }
 

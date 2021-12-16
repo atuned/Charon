@@ -25,7 +25,7 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        Controller controller = new Controller(200, 1000, 1800, NumericMethod.EULER_FORWARD, 0.1, 9.82);
+        Controller controller = new Controller(200, 1000, 1800, NumericMethod.EULER_FORWARD, 0.1, 0);
 
         primaryStage.setScene(controller.getScene());
         primaryStage.show();

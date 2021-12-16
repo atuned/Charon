@@ -66,7 +66,6 @@ public class Controller
             Ball ball = new Ball(10, 1, radius, velocity, position);
             objects.add(ball);
         }
-        objects.add(new StraightBorder(1, new Vector2D(100, 300), new Angle(0.04)));
         return objects;
     }
 
